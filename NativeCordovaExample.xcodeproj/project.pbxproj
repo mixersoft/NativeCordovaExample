@@ -29,6 +29,7 @@
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		4C6D2CF619F6942100A1E070 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2CF419F6942100A1E070 /* LICENSE */; };
 		4C6D2CF719F6942100A1E070 /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2CF519F6942100A1E070 /* TemplateIcon2x.png */; };
+		4C9D637719F6F74700D40A24 /* AppPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D637619F6F74700D40A24 /* AppPreferences.m */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		76067138C7D342219F8E0BAB /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150DDCAE1F84F6B831E774C /* CDVLogger.m */; };
@@ -93,6 +94,8 @@
 		32CA4F630368D1EE00C91783 /* NativeCordovaExample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NativeCordovaExample-Prefix.pch"; sourceTree = "<group>"; };
 		4C6D2CF419F6942100A1E070 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = www/LICENSE; sourceTree = "<group>"; };
 		4C6D2CF519F6942100A1E070 /* TemplateIcon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TemplateIcon2x.png; path = www/TemplateIcon2x.png; sourceTree = "<group>"; };
+		4C9D637619F6F74700D40A24 /* AppPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppPreferences.m; path = "me.apla.cordova.app-preferences/AppPreferences.m"; sourceTree = "<group>"; };
+		4C9D637A19F6F76600D40A24 /* AppPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppPreferences.h; path = "me.apla.cordova.app-preferences/AppPreferences.h"; sourceTree = "<group>"; };
 		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				4C9D637A19F6F76600D40A24 /* AppPreferences.h */,
+				4C9D637619F6F74700D40A24 /* AppPreferences.m */,
 				0150DDCAE1F84F6B831E774C /* CDVLogger.m */,
 				A961630DACB3436495B07C83 /* CDVLogger.h */,
 			);
@@ -418,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				4C9D637719F6F74700D40A24 /* AppPreferences.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				76067138C7D342219F8E0BAB /* CDVLogger.m in Sources */,

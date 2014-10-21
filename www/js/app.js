@@ -295,6 +295,21 @@ angular.module('ionBlankApp', ['ionic', 'ionBlankApp.controllers']).constant('ve
       moments: null,
       photos: null
     };
+    $scope.$watch('config', function(newVal, oldVal) {
+      var fail, ok, okAlert, prefs;
+      prefs = plugins.appPreferences;
+      ok = function(value) {
+        console.log("SUCCESS: value=" + JSON.stringify(value));
+        prefs.fetch(okAlert, fail, 'prefs');
+      };
+      okAlert = function(value) {
+        alert("SUCCESS: value=" + JSON.stringify(value));
+      };
+      fail = function(err) {
+        console.warn("FAIL: error=" + JSON.stringify(err));
+      };
+      return prefs.store(ok, fail, 'prefs', newVal);
+    }, true);
     init = function() {
       cameraRoll_DATA.photos_ByDate = TEST_DATA.cameraRoll_byDate;
       cameraRoll_DATA.moments = otgData.orderMomentsByDescendingKey(otgData.parseMomentsFromCameraRollByDate(cameraRoll_DATA.photos_ByDate), 2);

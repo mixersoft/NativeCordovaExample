@@ -28,12 +28,15 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
+    <feature name="AppPreferences">
+        <param name="ios-package" value="AppPreferences" />
+    </feature>
     <name>On-the-Go</name>
     <description>
         Get the photos to feed your feed when you're On-the-Go - by Snaphappi
     </description>
     <author email="info@snaphappi.com" href="http://snaphappi.com/">
-        Snaphappi
+      Snaphappi
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -45,4 +48,3 @@
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
 </widget>
-
