@@ -1,0 +1,44 @@
+<ion-view>
+<ion-content class="has-header">
+  <!-- header card  -->
+  <div class="card header-card">
+    <div class="item item-divider item-royal">
+      {{headerCard.header}}
+    </div>
+    <div class="item item-text-wrap">
+      {{headerCard.body}}
+      <div class="row">
+        <div class="col col-33 text-right">From:</div>
+        <div class="col">{{checkout.dateRange.from}}</div>
+      </div>
+      <div class="row">
+        <div class="col col-33 text-right">To:</div>
+        <div class="col">{{checkout.dateRange.to}}</div>
+      </div>
+      <div class="row">
+        <div class="col col-67 text-right">Consecutive Days:</div>
+        <div class="col">{{checkout.count.days}}</div>
+      </div>
+      <div class="row" ng-show="on.getOrderType()=='camera-roll'">
+          <div class="col col-67 text-right">Photos:</div>
+          <div class="col">{{checkout.count.photos}}</div>
+        </div>
+      <hr>
+      <div class="row">
+        <div class="col col-67 text-right">Total:</div>
+        <div class="col">{{servicePlan.total | currency:'$'}}</div>
+      </div>
+      <div class="row" ng-show="on.getOrderType()=='calendar' && servicePlan.total>1">
+        Note: No matter how many days you are On-the-Go, it's only $1 for your first 100 photos.
+      </div>
+    </div> 
+
+    <div class="item item-divider item-royal">
+       {{headerCard.footer}}
+    </div>   
+  </div>
+
+</ion-content>
+</ion-view>
+
+
