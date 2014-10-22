@@ -8156,12 +8156,14 @@ otg-gallery {
 .thumb.ng-leave, .thumb.ng-enter.ng-enter-active {
   opacity: 1; }
 
-#about {
+#help ion-content, #help ifrome {
+  background-color: rgba(113, 17, 36, 0.8); }
+#help #about {
   border-color: #fdf9d0;
   text-shadow: 0.12em 0.12em 0.18em rgba(21, 36, 55, 0.7);
   color: #fdf9d0;
-  background-color: rgba(113, 17, 36, 0.8); }
-  #about .logo {
+  /*background-color: rgba(113, 17, 36, 0.8);*/ }
+  #help #about .logo {
     width: 80px;
     height: 80px;
     box-shadow: 0 0 8px #fdf9d0;
@@ -8170,18 +8172,18 @@ otg-gallery {
     background-image: url(http://app.snaphappi.com/on-the-go/img/logo-sq.144.png);
     background-size: 100%;
     float: left; }
-  #about .mission {
+  #help #about .mission {
     font-weight: bold;
     margin-left: 87px; }
-  #about a, #about i, #about h4 {
+  #help #about a, #help #about i, #help #about h4 {
     color: #fdf9d0; }
-  #about .connect-social {
+  #help #about .connect-social {
     line-height: 42px; }
-    #about .connect-social i {
+    #help #about .connect-social i {
       vertical-align: middle;
       font-size: 24px;
       padding: 0 20px; }
-  #about .media {
+  #help #about .media {
     margin: 10px auto; }
-    #about .media .media-body {
+    #help #about .media .media-body {
       padding: 10px 0 10px 10px; }

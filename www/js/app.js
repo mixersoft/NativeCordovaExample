@@ -8,7 +8,7 @@
   *
   * Main module of the application.
  */
-angular.module('ionBlankApp', ['ionic', 'ionBlankApp.controllers']).constant('version', '0.0.1').run([
+angular.module('ionBlankApp', ['ionic']).constant('version', '0.0.1').run([
   '$rootScope', '$state', '$stateParams', '$ionicPlatform', function($rootScope, $state, $stateParams, $ionicPlatform) {
     $ionicPlatform.ready(function() {
       var _ref;
@@ -183,7 +183,7 @@ angular.module('ionBlankApp', ['ionic', 'ionBlankApp.controllers']).constant('ve
     abstract: true,
     views: {
       'menuContent': {
-        template: '<ion-view title="Help" hide-back-button="true" ><ion-nav-view name="helpContent" animation="slide-left-right"></ion-nav-view></ion-view>',
+        template: '<ion-view title="Help" hide-back-button="true" ><ion-nav-view  id="help" name="helpContent" animation="slide-left-right"></ion-nav-view></ion-view>',
         controller: 'HelpCtrl'
       }
     }
@@ -212,14 +212,14 @@ angular.module('ionBlankApp', ['ionic', 'ionBlankApp.controllers']).constant('ve
     url: "/about",
     views: {
       'helpContent': {
-        templateUrl: "views/help/about.html"
+        templateUrl: "help/about"
       }
     }
   });
   return $urlRouterProvider.otherwise('/app/top-picks');
 }).controller('AppCtrl', [
-  '$scope', '$ionicModal', '$timeout', 'otgData', 'otgWorkOrder', 'TEST_DATA', function($scope, $ionicModal, $timeout, otgData, otgWorkOrder, TEST_DATA) {
-    var cameraRoll_DATA, init;
+  '$scope', '$ionicModal', '$timeout', '$q', '$ionicPlatform', 'otgData', 'otgWorkOrder', 'TEST_DATA', function($scope, $ionicModal, $timeout, $q, $ionicPlatform, otgData, otgWorkOrder, TEST_DATA) {
+    var cameraRoll_DATA, init, _prefs;
     $scope.loginData = {};
     $ionicModal.fromTemplateUrl('templates/login.html', {
       scope: $scope
@@ -296,21 +296,69 @@ angular.module('ionBlankApp', ['ionic', 'ionBlankApp.controllers']).constant('ve
       photos: null
     };
     $scope.$watch('config', function(newVal, oldVal) {
-      var fail, ok, okAlert, prefs;
-      prefs = plugins.appPreferences;
-      ok = function(value) {
-        console.log("SUCCESS: value=" + JSON.stringify(value));
-        prefs.fetch(okAlert, fail, 'prefs');
-      };
-      okAlert = function(value) {
-        alert("SUCCESS: value=" + JSON.stringify(value));
-      };
-      fail = function(err) {
-        console.warn("FAIL: error=" + JSON.stringify(err));
-      };
-      return prefs.store(ok, fail, 'prefs', newVal);
+      return _prefs.store(newVal, oldVal);
     }, true);
+    _prefs = {
+      store: function(newVal, oldVal) {
+        var fail, ok, okAlert, prefs;
+        if ((typeof plugins !== "undefined" && plugins !== null ? plugins.appPreferences : void 0) != null) {
+          prefs = plugins.appPreferences;
+          ok = function(value) {
+            prefs.fetch(okAlert, fail, 'prefs');
+          };
+          okAlert = function(value) {
+            alert("SUCCESS: value=" + JSON.stringify(value));
+          };
+          fail = function(err) {
+            console.warn("FAIL: error=" + JSON.stringify(err));
+          };
+          return prefs.store(ok, fail, 'prefs', newVal);
+        } else {
+
+        }
+      },
+      load: function() {
+        var promise;
+        promise = $q.defer();
+        if (typeof plugins !== "undefined" && plugins !== null ? plugins.appPreferences : void 0) {
+          plugins.appPreferences.fetch(function(value) {
+            var cfg;
+            if (_.isEmpty(value)) {
+              cfg = {
+                status: "EMPTY"
+              };
+            } else {
+              cfg = JSON.parse(value);
+            }
+            return promise.resolve(cfg);
+          }, function(err) {
+            console.warn("AppPreferences load() FAIL: error=" + JSON.stringify(err));
+            return promise.resolve($scope.config);
+          }, 'prefs');
+        } else {
+          promise.resolve({
+            status: "PLUGIN unavailable"
+          });
+        }
+        return promise.promise;
+      }
+    };
     init = function() {
+      $timeout(function() {
+        return $ionicPlatform.ready(function() {
+          _prefs.load().then(function(config) {
+            if ((config != null ? config.status : void 0) === "PLUGIN unavailable") {
+              console.log(config.status);
+            } else if ((config != null ? config.status : void 0) === "EMPTY") {
+              alert("config=" + JSON.stringify(config));
+              _prefs.store($scope.config);
+            } else {
+              alert("config=" + JSON.stringify(config));
+              _.extend($scope.config, config);
+            }
+          });
+        });
+      }, 5000);
       cameraRoll_DATA.photos_ByDate = TEST_DATA.cameraRoll_byDate;
       cameraRoll_DATA.moments = otgData.orderMomentsByDescendingKey(otgData.parseMomentsFromCameraRollByDate(cameraRoll_DATA.photos_ByDate), 2);
       cameraRoll_DATA.photos = otgData.parsePhotosFromMoments(cameraRoll_DATA.moments);

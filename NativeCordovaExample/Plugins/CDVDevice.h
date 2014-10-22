@@ -17,10 +17,14 @@
  under the License.
  */
 
+#import <UIKit/UIKit.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface CDVLogger : CDVPlugin
+@interface CDVDevice : CDVPlugin
+{}
 
-- (void)logLevel:(CDVInvokedUrlCommand*)command;
++ (NSString*)cordovaVersion;
+
+- (void)getDeviceInfo:(CDVInvokedUrlCommand*)command;
 
 @end

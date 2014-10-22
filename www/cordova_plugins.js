@@ -40,8 +40,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "com.ionic.keyboard": "1.0.3",
-    "org.apache.cordova.console": "0.2.10",
-    "org.apache.cordova.device": "0.2.11",
+    "org.apache.cordova.console": "0.2.11",
+    "org.apache.cordova.device": "0.2.12",
     "me.apla.cordova.app-preferences": "0.4.2"
 }
 // BOTTOM OF METADATA
